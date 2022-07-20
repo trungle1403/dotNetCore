@@ -1,0 +1,66 @@
+input.ob_iDdlIE {
+    border: 0px !important;
+    background: unset !important;
+    border-radius: 0px !important;
+     }
+.nenmaunau {
+    background-color: #9585BF;
+    padding: .2em .4em .3em;
+    font-size: 12px;
+    line-height: 1;
+    height: 18px;
+    color: #FFF;
+    display: inline-block;
+}
+ .searchCss {
+            border-top: 1px solid #CCC;
+            border-left: 1px solid #CCC;
+            border-right: 1px solid #CCC;
+            border-bottom: 1px solid #CCC;
+            height: 28px !important;
+            width: 250px;
+        }
+            .searchCss:focus {
+                border-top: 1px solid #009DCC;
+                border-left: 1px solid #009DCC;
+                border-right: 1px solid #009DCC;
+                border-bottom: 1px solid #009DCC;
+            }
+
+            .searchCss:hover {
+                border-top: 1px solid #009DCC;
+                border-left: 1px solid #009DCC;
+                border-right: 1px solid #009DCC;
+                border-bottom: 1px solid #009DCC;
+            }
+            .ob_iTL {
+                height: 27px !important;
+            }
+            .ob_iCboIC {
+                margin-top: -2px !important;
+            }
+            table.calendarMonthDefault {
+    margin-left: -3px;
+}
+            .calendarCalendarDefault {
+    height: 200px;
+}
+            table.dogmaBottomLineTable {
+    display: none;
+}
+            .dogmaBottomLineContainer {
+    border-top: 1px solid grey;
+}
+            .select2-container--default .select2-selection {
+            border-color: #ddd;
+            border-radius: 3px;
+        }
+.select2-link {
+    border-radius: 0px !important;
+    width: 100%;
+    background-color: #2E8965 !important;
+    text-align: left;
+    line-height: 18px;
+    font-size: 12px;
+    font-family: inherit;
+}

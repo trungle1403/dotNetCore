@@ -1,0 +1,69 @@
+﻿<div id="modal_xemtruockhiin_us" class="modal" data-backdrop="static">
+    <div class="modal-dialog modal-full" id="mdXuatBaoCao-modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">&times;</span>
+                    </button>
+                    <span id="modal_xemtruockhiin_tieude_us">Xem trước khi in</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row" style="padding-bottom: 2px">
+                    <div id="modal_xemtruockhiin_us_khung" class="col-xs-12" style="height: 600px;">
+                        <iframe id="divNoiDung_us" class="col-xs-12" style="height: 600px; border: solid 1px #ddd" name="divNoiDung"></iframe>
+                    </div>
+                </div>
+            </div> 
+            <div class="modal-footer">
+                <a href="#" class="btn btn-success btn-taiDinhKem" id="modal_taifile_us">
+                    <i class="ace-icon fa fa-download bigger-110"></i>&nbsp; Tải file gốc
+                </a>
+                <a href="#" class="btn btn-success  btn-inDinhKem" id="modal_in_us">
+                    <i class="ace-icon fa fa-print bigger-110"></i>&nbsp; In
+                </a> 
+                <a href="#" class="btn btn-danger"
+                   data-dismiss="modal">
+                    <i class="fa fa-close"></i>&nbsp;Đóng
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function SetChieuCao() {
+        var chieucao = window.innerHeight -170;
+        $('#modal_xemtruockhiin_us_khung').css('height', chieucao + 'px');
+        $('#divNoiDung_us').css('height', chieucao + 'px');
+    }
+    function SetChieuCao2(height) {
+        var chieucao = height;
+        $('#modal_xemtruockhiin_us_khung').css('height', chieucao + 'px');
+        $('#divNoiDung_us').css('height', chieucao + 'px');
+    }
+    SetChieuCao();
+    $('#modal_in_us').on('click', function () { 
+        var frm = document.getElementById("divNoiDung_us").contentWindow;
+            frm.focus();
+            frm.print();
+            return false; 
+    }) 
+    $('#modal_taifile_us').on('click', function () {
+        if (document.getElementById("divNoiDung_us").src == "")
+            return false;
+        var file = document.getElementById("divNoiDung_us").src;
+        var extFile = ".xlsx";
+        if (file.lastIndexOf("xuatword") != -1)
+            extFile = ".docx"
+        window.open(document.getElementById("divNoiDung_us").src.replace("." + file.substr((file.lastIndexOf('.') + 1)), extFile));
+        return false;
+    });
+</script>
+<style>
+    .modal-full {
+        width: 95%;
+        height: 100%;
+        padding:0;
+    }
+</style>
