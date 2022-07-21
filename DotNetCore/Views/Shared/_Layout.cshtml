@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,79 +21,106 @@
         <link rel="stylesheet" href="~/css/bootstrap-timepicker.min.css" />
         <link rel="stylesheet" href="~/css/bootstrap-datetimepicker.min.css" />
         <link rel="stylesheet" href="~/css/style.css" />
-        <link rel="stylesheet" href="~/style.css" />
         <link rel="stylesheet" href="~/css/chosen.min.css" />
         <script src="~/js/jquery-2.1.4.min.js"></script>
 
         <script src="~/DungChung/js/NTSPlugin.js"></script>
         @*<script src="/Scripts/Header.js"></script>*@
-        <style>
-            body {
-                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-                font-size: 12px;
-                font-size-adjust: inherit;
-                font-stretch: normal;
-                font-variant: normal;
-                font-style: normal;
-            }
 
-            .bootbox.modal.bb-alternate-modal.in {
-                top: 10% !important;
-            }
-
-            button.bootbox-close-button.close {
-                margin-top: -6px !important;
-            }
-
-            .close {
-                float: right;
-                font-size: 21px;
-                color: #f00;
-                opacity: 1;
-            }
-
-            .ntsloadding {
-                position: fixed;
-                left: 0px;
-                top: 0px;
-                width: 100%;
-                height: 100%;
-                z-index: 9999;
-                opacity: 0.5;
-                text-align: center;
-                background: #CCC;
-                filter: alpha(opacity=80);
-            }
-
-            .message-loading-overlay > .ace-icon {
-                position: absolute;
-                top: 40%;
-                left: 49%;
-                right: 0;
-                text-align: center;
-            }
-            span#select2-selkybaocao-container {
-                font-size: 12px !important;
-            }
-
-            label#ctl00_ctl16_lblNam {
-                font-size: 15px;
-            }
-
-            .scroll-content {
-                max-height: 300px !important;
-            }
-        </style>
     </environment>
     @*<environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>*@
-</head>
-<body>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>*@
+    <style>
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 12px;
+            font-size-adjust: inherit;
+            font-stretch: normal;
+            font-variant: normal;
+            font-style: normal;
+        }
 
+        .bootbox.modal.bb-alternate-modal.in {
+            top: 10% !important;
+        }
+
+        button.bootbox-close-button.close {
+            margin-top: -6px !important;
+        }
+
+        .close {
+            float: right;
+            font-size: 21px;
+            color: #f00;
+            opacity: 1;
+        }
+
+        .ntsloadding {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            opacity: 0.5;
+            text-align: center;
+            background: #CCC;
+            filter: alpha(opacity=80);
+        }
+
+        .message-loading-overlay > .ace-icon {
+            position: absolute;
+            top: 40%;
+            left: 49%;
+            right: 0;
+            text-align: center;
+        }
+
+        span#select2-selkybaocao-container {
+            font-size: 12px !important;
+        }
+
+        label#ctl00_ctl16_lblNam {
+            font-size: 15px;
+        }
+
+        .scroll-content {
+            max-height: 300px !important;
+        }
+
+        .navbar-fixed-top + .main-container {
+            padding-top: 0 !important;
+        }
+        .main-content {
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="~/style.css" />
+
+</head>
+<body class="no-skin">
+    <div id="ntsSecurity" runat="server"></div>
+    <input type="hidden" value="0" runat="server" id="hdfWidthNTS" />
+    <div class="ntsloadding" style="display: none;">
+        <div style="margin-top: 20%; z-index: 9999">
+            <div style="font-size: 38px; color: yellow;"><i class="fa fa-spinner fa-spin"></i></div>
+            <div><span class="process" style="color: black;">Đang xử lý...</span></div>
+        </div>
+    </div>
+    @*<div id="Loadding">
+        <div class="message-loading-overlay">
+            <img class="ace-icon" src="../../Images/loading.gif" width="48" height="48" alt="Vui lòng chờ..." />
+        </div>
+    </div>*@
+    <input id="gritter-light" checked="" type="checkbox" class="ace ace-switch ace-switch-5" />
+
+
+
+    @* header *@
     <div id="navbar" class="navbar navbar-fixed-top">
         <input type="hidden" id="hdfHeader_kyBaoCao" value="" runat="server" />
         <div class="navbar-container ace-save-state" id="navbar-container">
@@ -299,361 +326,364 @@
         </div>
     </div>
 
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content">
-        <div class="main-container ace-save-state" id="main-container">
-            <div id="sidebar" class="sidebar                  responsive                    ace-save-state" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
-				<script type="text/javascript">
-					try{ace.settings.loadState('sidebar')}catch(e){}
-				</script>
-
-				<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-					<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-						<button class="btn btn-success">
-							<i class="ace-icon fa fa-signal"></i>
-						</button>
-
-						<button class="btn btn-info">
-							<i class="ace-icon fa fa-pencil"></i>
-						</button>
-
-						<button class="btn btn-warning">
-							<i class="ace-icon fa fa-users"></i>
-						</button>
-
-						<button class="btn btn-danger">
-							<i class="ace-icon fa fa-cogs"></i>
-						</button>
-					</div>
-
-					<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-						<span class="btn btn-success"></span>
-
-						<span class="btn btn-info"></span>
-
-						<span class="btn btn-warning"></span>
-
-						<span class="btn btn-danger"></span>
-					</div>
-				</div><!-- /.sidebar-shortcuts -->
-
-				<ul class="nav nav-list" style="top: 0px;">
-					<li class="active">
-						<a href="http://ace.jeka.by/index.html">
-							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> Dashboard </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="">
-						<a href="http://ace.jeka.by/#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-desktop"></i>
-							<span class="menu-text">
-								UI &amp; Elements
-							</span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu nav-hide" style="display: none;">
-							<li class="">
-								<a href="http://ace.jeka.by/#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-
-									Layouts
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="">
-										<a href="http://ace.jeka.by/top-menu.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Top Menu
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="http://ace.jeka.by/two-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Two Menus 1
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="http://ace.jeka.by/two-menu-2.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Two Menus 2
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="http://ace.jeka.by/mobile-menu-1.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Default Mobile Menu
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="http://ace.jeka.by/mobile-menu-2.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Mobile Menu 2
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="http://ace.jeka.by/mobile-menu-3.html">
-											<i class="menu-icon fa fa-caret-right"></i>
-											Mobile Menu 3
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-								</ul>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/typography.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Typography
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/elements.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Elements
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/buttons.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Buttons &amp; Icons
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/content-slider.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Content Sliders
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/treeview.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Treeview
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/jquery-ui.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									jQuery UI
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/nestable-list.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Nestable Lists
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-
-									Three Level Menu
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="">
-										<a href="http://ace.jeka.by/#">
-											<i class="menu-icon fa fa-leaf green"></i>
-											Item #1
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="http://ace.jeka.by/#" class="dropdown-toggle">
-											<i class="menu-icon fa fa-pencil orange"></i>
-
-											4th level
-											<b class="arrow fa fa-angle-down"></b>
-										</a>
-
-										<b class="arrow"></b>
-
-										<ul class="submenu">
-											<li class="">
-												<a href="http://ace.jeka.by/#">
-													<i class="menu-icon fa fa-plus purple"></i>
-													Add Product
-												</a>
-
-												<b class="arrow"></b>
-											</li>
-
-											<li class="">
-												<a href="http://ace.jeka.by/#">
-													<i class="menu-icon fa fa-eye pink"></i>
-													View Products
-												</a>
-
-												<b class="arrow"></b>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="http://ace.jeka.by/#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-list"></i>
-							<span class="menu-text"> Tables </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="http://ace.jeka.by/tables.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Simple &amp; Dynamic
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/jqgrid.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									jqGrid plugin
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="http://ace.jeka.by/#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-pencil-square-o"></i>
-							<span class="menu-text"> Forms </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="http://ace.jeka.by/form-elements.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Form Elements
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/form-elements-2.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Form Elements 2
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/form-wizard.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Wizard &amp; Validation
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/wysiwyg.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Wysiwyg &amp; Markdown
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="http://ace.jeka.by/dropzone.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									Dropzone File Upload
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-					
-				</ul><!-- /.nav-list -->
-
-				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-					<i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-				</div>
-			</div>
-            @RenderBody()
-            <div class="footer" style="padding-top: 80px;">
-                <div class="footer-inner">
-                    <div class="footer-content">
-                        <span class="bigger-120">
-                            <span class="blue bolder">QUẢN LÝ CÔNG VIỆC 2020</span>
-                            Copyright &copy; 2020 - Bản quyền thuộc về <a href="https://nhattamsoft.vn" target="_blank">Công ty TNHH Phát triển phần mềm Nhất Tâm - NTSoft</a>
+    <div class="main-container ace-save-state" id="main-container">
+        <div id="sidebar" class="sidebar responsive ace-save-state" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
+            <script type="text/javascript">
+                try { ace.settings.loadState('sidebar') } catch (e) { }
+            </script>
+
+            <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                    <button class="btn btn-success">
+                        <i class="ace-icon fa fa-signal"></i>
+                    </button>
+
+                    <button class="btn btn-info">
+                        <i class="ace-icon fa fa-pencil"></i>
+                    </button>
+
+                    <button class="btn btn-warning">
+                        <i class="ace-icon fa fa-users"></i>
+                    </button>
+
+                    <button class="btn btn-danger">
+                        <i class="ace-icon fa fa-cogs"></i>
+                    </button>
+                </div>
+
+                <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                    <span class="btn btn-success"></span>
+
+                    <span class="btn btn-info"></span>
+
+                    <span class="btn btn-warning"></span>
+
+                    <span class="btn btn-danger"></span>
+                </div>
+            </div><!-- /.sidebar-shortcuts -->
+
+            <ul class="nav nav-list" style="top: 0px;">
+                <li class="active">
+                    <a href="http://ace.jeka.by/index.html">
+                        <i class="menu-icon fa fa-tachometer"></i>
+                        <span class="menu-text"> Dashboard </span>
+                    </a>
+
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="http://ace.jeka.by/#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text">
+                            UI &amp; Elements
                         </span>
-                        &nbsp; &nbsp;
-                    </div>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu nav-hide" style="display: none;">
+                        <li class="">
+                            <a href="http://ace.jeka.by/#" class="dropdown-toggle">
+                                <i class="menu-icon fa fa-caret-right"></i>
+
+                                Layouts
+                                <b class="arrow fa fa-angle-down"></b>
+                            </a>
+
+                            <b class="arrow"></b>
+
+                            <ul class="submenu">
+                                <li class="">
+                                    <a href="http://ace.jeka.by/top-menu.html">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        Top Menu
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a href="http://ace.jeka.by/two-menu-1.html">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        Two Menus 1
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a href="http://ace.jeka.by/two-menu-2.html">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        Two Menus 2
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a href="http://ace.jeka.by/mobile-menu-1.html">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        Default Mobile Menu
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a href="http://ace.jeka.by/mobile-menu-2.html">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        Mobile Menu 2
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a href="http://ace.jeka.by/mobile-menu-3.html">
+                                        <i class="menu-icon fa fa-caret-right"></i>
+                                        Mobile Menu 3
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/typography.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Typography
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/elements.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Elements
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/buttons.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Buttons &amp; Icons
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/content-slider.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Content Sliders
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/treeview.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Treeview
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/jquery-ui.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                jQuery UI
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/nestable-list.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Nestable Lists
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/#" class="dropdown-toggle">
+                                <i class="menu-icon fa fa-caret-right"></i>
+
+                                Three Level Menu
+                                <b class="arrow fa fa-angle-down"></b>
+                            </a>
+
+                            <b class="arrow"></b>
+
+                            <ul class="submenu">
+                                <li class="">
+                                    <a href="http://ace.jeka.by/#">
+                                        <i class="menu-icon fa fa-leaf green"></i>
+                                        Item #1
+                                    </a>
+
+                                    <b class="arrow"></b>
+                                </li>
+
+                                <li class="">
+                                    <a href="http://ace.jeka.by/#" class="dropdown-toggle">
+                                        <i class="menu-icon fa fa-pencil orange"></i>
+
+                                        4th level
+                                        <b class="arrow fa fa-angle-down"></b>
+                                    </a>
+
+                                    <b class="arrow"></b>
+
+                                    <ul class="submenu">
+                                        <li class="">
+                                            <a href="http://ace.jeka.by/#">
+                                                <i class="menu-icon fa fa-plus purple"></i>
+                                                Add Product
+                                            </a>
+
+                                            <b class="arrow"></b>
+                                        </li>
+
+                                        <li class="">
+                                            <a href="http://ace.jeka.by/#">
+                                                <i class="menu-icon fa fa-eye pink"></i>
+                                                View Products
+                                            </a>
+
+                                            <b class="arrow"></b>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="http://ace.jeka.by/#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-list"></i>
+                        <span class="menu-text"> Tables </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="http://ace.jeka.by/tables.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Simple &amp; Dynamic
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/jqgrid.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                jqGrid plugin
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="http://ace.jeka.by/#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-pencil-square-o"></i>
+                        <span class="menu-text"> Forms </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <b class="arrow"></b>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="http://ace.jeka.by/form-elements.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Form Elements
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/form-elements-2.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Form Elements 2
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/form-wizard.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Wizard &amp; Validation
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/wysiwyg.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Wysiwyg &amp; Markdown
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+
+                        <li class="">
+                            <a href="http://ace.jeka.by/dropzone.html">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Dropzone File Upload
+                            </a>
+
+                            <b class="arrow"></b>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul><!-- /.nav-list -->
+
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="main-content-inner" id="divNoiDung">
+                @RenderBody()
+            </div>
+        </div>
+        <div class="footer" style="padding-top: 80px;">
+            <div class="footer-inner">
+                <div class="footer-content">
+                    <span class="bigger-120">
+                        <span class="blue bolder">QUẢN LÝ CÔNG VIỆC 2020</span>
+                        Copyright &copy; 2020 - Bản quyền thuộc về <a href="https://nhattamsoft.vn" target="_blank">Công ty TNHH Phát triển phần mềm Nhất Tâm - NTSoft</a>
+                    </span>
+                    &nbsp; &nbsp;
                 </div>
             </div>
         </div>
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
     </div>
 
     <environment include="Development">

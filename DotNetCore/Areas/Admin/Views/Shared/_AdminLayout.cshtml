@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DotNetCore</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+
+        <link rel="stylesheet" href="~/lib/font-awesome/4.7.0/css/font-awesome.min.css" />
+        @*<link rel="stylesheet" href="~/css/bootstrap.min.css" />*@
+        <link rel="stylesheet" href="~/css/fonts.googleapis.com.css" />
+        <link rel="stylesheet" href="~/material-preloader/css/materialPreloader.css" />
+        <link rel="stylesheet" href="~/css/select2.min.css" />
+        <link rel="stylesheet" href="~/css/jquery-ui.custom.min.css" />
+        <link rel="stylesheet" href="~/css/jquery.gritter.min.css" />
+        <link rel="stylesheet" href="~/css/ace.min.css" />
+        <link rel="stylesheet" href="~/css/bootstrap-datepicker3.min.css" />
+        <link rel="stylesheet" href="~/css/bootstrap-timepicker.min.css" />
+        <link rel="stylesheet" href="~/css/bootstrap-datetimepicker.min.css" />
+        <link rel="stylesheet" href="~/css/style.css" />
+        <link rel="stylesheet" href="~/css/chosen.min.css" />
+        <script src="~/js/jquery-2.1.4.min.js"></script>
+
+        <script src="~/DungChung/js/NTSPlugin.js"></script>
+        @*<script src="/Scripts/Header.js"></script>*@
+
+    </environment>
+    @*<environment exclude="Development">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+                  asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+                  asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+            <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        </environment>*@
+    <style>
+        body {
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 12px;
+            font-size-adjust: inherit;
+            font-stretch: normal;
+            font-variant: normal;
+            font-style: normal;
+        }
+
+        .bootbox.modal.bb-alternate-modal.in {
+            top: 10% !important;
+        }
+
+        button.bootbox-close-button.close {
+            margin-top: -6px !important;
+        }
+
+        .close {
+            float: right;
+            font-size: 21px;
+            color: #f00;
+            opacity: 1;
+        }
+
+        .ntsloadding {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            opacity: 0.5;
+            text-align: center;
+            background: #CCC;
+            filter: alpha(opacity=80);
+        }
+
+        .message-loading-overlay > .ace-icon {
+            position: absolute;
+            top: 40%;
+            left: 49%;
+            right: 0;
+            text-align: center;
+        }
+
+        span#select2-selkybaocao-container {
+            font-size: 12px !important;
+        }
+
+        label#ctl00_ctl16_lblNam {
+            font-size: 15px;
+        }
+
+        .scroll-content {
+            max-height: 300px !important;
+        }
+
+        .navbar-fixed-top + .main-container {
+            padding-top: 0 !important;
+        }
+
+        .main-content {
+            overflow: hidden;
+        }
+    </style>
+    <link rel="stylesheet" href="~/style.css" />
+
+</head>
+<body class="no-skin">
+    <div id="ntsSecurity" runat="server"></div>
+    <input type="hidden" value="0" runat="server" id="hdfWidthNTS" />
+    <div class="ntsloadding" style="display: none;">
+        <div style="margin-top: 20%; z-index: 9999">
+            <div style="font-size: 38px; color: yellow;"><i class="fa fa-spinner fa-spin"></i></div>
+            <div><span class="process" style="color: black;">Đang xử lý...</span></div>
+        </div>
+    </div>
+    @*<div id="Loadding">
+            <div class="message-loading-overlay">
+                <img class="ace-icon" src="../../Images/loading.gif" width="48" height="48" alt="Vui lòng chờ..." />
+            </div>
+        </div>*@
+    <input id="gritter-light" checked="" type="checkbox" class="ace ace-switch ace-switch-5" />
+
+
+    <partial name="_Header" />
+    <div class="main-container ace-save-state" id="main-container">
+        <partial name="_Leftbar" />
+        <div class="main-content">
+            <div class="main-content-inner" id="divNoiDung">
+                @RenderBody()
+            </div>
+        </div>
+        <partial name="_Footer" />
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
+    </div>
+
+    <environment include="Development">
+        @*<script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>*@
+
+        <script src="~/js/ace-extra.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/jquery.dataTables.min.js"></script>
+        <script src="~/js/jquery.dataTables.bootstrap.min.js"></script>
+        <script src="~/material-preloader/js/materialPreloader.js"></script>
+        <script src="~/js/bootbox.js"></script>
+        <script src="~/js/select2.full.js"></script>
+        <script src="~/js/ace-elements.min.js"></script>
+        <script src="~/js/ace.min.js"></script>
+        <script src="~/js/dataTables.select.min.js"></script>
+        <script src="~/js/jquery-ui.min.js"></script>
+        <script src="~/js/jquery.mask.min.js" defer="defer"></script>
+        <script src="~/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/js/bootstrap-timepicker.min.js"></script>
+        <script src="~/js/moment.min.js"></script>
+        <script src="~/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="~/js/bootstrap-tag.min.js" defer="defer"></script>
+        <script src="~/js/jquery.gritter.min.js"></script>
+        <script src="~/DungChung/js/NTSLibrary.js"></script>
+        <input id="gritter-light" checked="" style="display:none" type="checkbox" class="ace ace-switch ace-switch-5" />
+
+    </environment>
+    @*<environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>*@
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

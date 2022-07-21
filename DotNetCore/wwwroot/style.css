@@ -64,3 +64,9 @@ input.ob_iDdlIE {
     font-size: 12px;
     font-family: inherit;
 }
+
+@media (max-width: 479px) {
+    .navbar-fixed-top + .main-container {
+        padding-top: 45px !important;
+    }
+}

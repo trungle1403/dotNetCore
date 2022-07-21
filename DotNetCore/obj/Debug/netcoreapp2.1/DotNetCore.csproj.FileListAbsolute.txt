@@ -1,4 +1,3 @@
-D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.csprojAssemblyReference.cache
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.csproj.CoreCompileInputs.cache
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.RazorAssemblyInfo.cache
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.RazorAssemblyInfo.cs
@@ -32,7 +31,11 @@ D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.pdb
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.csproj.CopyComplete
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\Error.g.cshtml.cs
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_CookieConsentPartial.g.cshtml.cs
-D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_Layout.g.cshtml.cs
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_ValidationScriptsPartial.g.cshtml.cs
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\_ViewImports.g.cshtml.cs
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\_ViewStart.g.cshtml.cs
+D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_AdminLayout.g.cshtml.cs
+D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Home\Index.g.cshtml.cs
+D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_Header.g.cshtml.cs
+D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.csprojAssemblyReference.cache
+D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_Footer.g.cshtml.cs
