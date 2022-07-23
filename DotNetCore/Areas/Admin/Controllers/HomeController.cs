@@ -13,5 +13,22 @@ namespace DotNetCore.Areas.Admin.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public string getViTriCongViec()
+        {
+            try
+            {
+
+                return JSonHelper.ToJson(SqlHelper.ExecuteDataset(NTSSession.GetConnectionString2(), CommandType.Text,
+                @"SELECT ViTriViecLamID,
+                   TenViTriViecLam
+                   FROM dbo.ViTriViecLam WHERE ISNULL(NgungSD,0)=0 order by ViTriViecLamCode asc", null).Tables[0]);
+            }
+            catch (Exception)
+            {
+                return JSonHelper.ToJson(null);
+            }
+        }
     }
 }
