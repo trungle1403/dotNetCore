@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,221 +9,221 @@ namespace DotNetCore.Class
 {
     public class DungChung
     {
-        public static string kiemTraPhanQuyen()
-        {
-            try
-            {
-                return HttpContext.Current.Session["CurrentPermiss"].ToString();
-            }
-            catch (Exception)
-            {
-                return "";
-            }
-        }
+        //public static string kiemTraPhanQuyen()
+        //{
+        //    try
+        //    {
+        //        return HttpContext.Current.Session["CurrentPermiss"].ToString();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return "";
+        //    }
+        //}
 
-        public DataTable LoadMainMenu_lv1()
-        {
-            try
-            {
-                SqlFunction sqlFun = new SqlFunction(NTSSession.GetConnectionString1());
-                return sqlFun.GetData(@"SELECT functionIDpr,dienGiai,nhomChucnang,pathFile,IconName FROM dbo.Functions   WHERE (nhomChucnang IS NULL OR nhomChucnang = '') AND functionIDpr IN (SELECT functionIDpr_sd FROM dbo.UserPermiss WHERE maNguoidungpr_sd='" + NTSSession.GetUser().UserID.ToString() + "')   ORDER BY tenFile asc");
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
+        //public DataTable LoadMainMenu_lv1()
+        //{
+        //    try
+        //    {
+        //        SqlFunction sqlFun = new SqlFunction(NTSSession.GetConnectionString1());
+        //        return sqlFun.GetData(@"SELECT functionIDpr,dienGiai,nhomChucnang,pathFile,IconName FROM dbo.Functions   WHERE (nhomChucnang IS NULL OR nhomChucnang = '') AND functionIDpr IN (SELECT functionIDpr_sd FROM dbo.UserPermiss WHERE maNguoidungpr_sd='" + NTSSession.GetUser().UserID.ToString() + "')   ORDER BY tenFile asc");
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return null;
+        //    }
+        //}
 
-        public static bool CapNhatKyBaoCao(KyBaoCao kyBaoCao)
-        {
-            try
-            {
-                string tungay = kyBaoCao.tuNgay;
-                string denngay = kyBaoCao.denNgay;
-                string kybaocao = kyBaoCao.kyBaoCao;
-                string KeyMaHoa = kyBaoCao.keyMaHoa;
-                UsersDataContext db = new UsersDataContext();
-                IQueryable<DonVi> dv = from u in db.DonVis where (u.DonViID == NTSSession.GetDonVi().DonViID) select u;
-                DonVi _vdonvi = dv.FirstOrDefault();
-                _vdonvi.NgayDauKy = Convert.ToDateTime(DungChung.chuyenChuoiSangNgay_YYYYmmdd(tungay));
-                _vdonvi.NgayCuoiKy = Convert.ToDateTime(DungChung.chuyenChuoiSangNgay_YYYYmmdd(denngay));
-                NTSSession.SetDonVi(_vdonvi);
-                NTSSession.SetNamSudung(tungay.ToString().Substring(6, 4));
-                NTSSession.SetKyBaoCao(kybaocao);
-                NTSSession.SetKeyMaHoa(KeyMaHoa);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+        //public static bool CapNhatKyBaoCao(KyBaoCao kyBaoCao)
+        //{
+        //    try
+        //    {
+        //        string tungay = kyBaoCao.tuNgay;
+        //        string denngay = kyBaoCao.denNgay;
+        //        string kybaocao = kyBaoCao.kyBaoCao;
+        //        string KeyMaHoa = kyBaoCao.keyMaHoa;
+        //        UsersDataContext db = new UsersDataContext();
+        //        IQueryable<DonVi> dv = from u in db.DonVis where (u.DonViID == NTSSession.GetDonVi().DonViID) select u;
+        //        DonVi _vdonvi = dv.FirstOrDefault();
+        //        _vdonvi.NgayDauKy = Convert.ToDateTime(DungChung.chuyenChuoiSangNgay_YYYYmmdd(tungay));
+        //        _vdonvi.NgayCuoiKy = Convert.ToDateTime(DungChung.chuyenChuoiSangNgay_YYYYmmdd(denngay));
+        //        NTSSession.SetDonVi(_vdonvi);
+        //        NTSSession.SetNamSudung(tungay.ToString().Substring(6, 4));
+        //        NTSSession.SetKyBaoCao(kybaocao);
+        //        NTSSession.SetKeyMaHoa(KeyMaHoa);
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
 
-        public static DataTable LoadKyBaoCao()
-        {
-            try
-            {
-                SqlFunction sqlFun = new SqlFunction(NTSSession.GetConnectionString2());
-                return sqlFun.GetData(@"SELECT bangChu,bangSo FROM dbo.DMKyBaocao where bangSo not in ('19','20') ");
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
+        //public static DataTable LoadKyBaoCao()
+        //{
+        //    try
+        //    {
+        //        SqlFunction sqlFun = new SqlFunction(NTSSession.GetConnectionString2());
+        //        return sqlFun.GetData(@"SELECT bangChu,bangSo FROM dbo.DMKyBaocao where bangSo not in ('19','20') ");
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return null;
+        //    }
+        //}
 
-        public DataTable LoadMainMenu_child(string motherID)
-        {
-            try
-            {
-                SqlFunction sqlFun = new SqlFunction(NTSSession.GetConnectionString1());
-                return sqlFun.GetData(@"SELECT functionIDpr,dienGiai,nhomChucnang,pathFile,IconName FROM dbo.Functions   WHERE nhomChucnang = '" + motherID + "' AND functionIDpr IN (SELECT functionIDpr_sd FROM dbo.UserPermiss WHERE maNguoidungpr_sd='" + NTSSession.GetUser().UserID + "')    ORDER BY tenFile asc");
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
+        //public DataTable LoadMainMenu_child(string motherID)
+        //{
+        //    try
+        //    {
+        //        SqlFunction sqlFun = new SqlFunction(NTSSession.GetConnectionString1());
+        //        return sqlFun.GetData(@"SELECT functionIDpr,dienGiai,nhomChucnang,pathFile,IconName FROM dbo.Functions   WHERE nhomChucnang = '" + motherID + "' AND functionIDpr IN (SELECT functionIDpr_sd FROM dbo.UserPermiss WHERE maNguoidungpr_sd='" + NTSSession.GetUser().UserID + "')    ORDER BY tenFile asc");
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return null;
+        //    }
+        //}
 
-        //kiem tram ma khi xoa
-        public static string KiemTraXoa(string sma, string sbangtru, string scot, string scotcon, string bangtrucon)
-        {
-            SqlFunction _sqlClass = new SqlFunction(NTSSession.GetConnectionString2());
-            //if (scot == "sttDinhMucNButpr")
-            //{
-            //    if (_sqlClass.CheckHasRecord("SELECT maDoiTuongpr_sd FROM dbo.NhuanBut WHERE sttNhapKhopr = '" + sma + "' AND trangThai ='1'") == true)
-            //    return "Không được phép xóa khi đã được lưu chính thức!";
-            //}
-            if (scot == "sttTraNhapKhopr" && _sqlClass.CheckHasRecord("SELECT sttTraNhapKhopr FROM dbo.TraNhapKho WHERE sttTraNhapKhopr = '" + sma + "' AND trangThai ='1'") == true)
-            {
-                return "Không được phép xóa khi đã được lưu chính thức!";
-            }
-            if (scot == "sttXuatKhopr" && _sqlClass.CheckHasRecord("SELECT sttXuatKhopr FROM dbo.XuatKho WHERE sttXuatKhopr = '" + sma + "' AND trangThai ='1'") == true)
-            {
-                return "Không được phép xóa khi đã được lưu chính thức!";
-            }
-            if (scot == "sttKiemKhopr" && _sqlClass.CheckHasRecord("SELECT sttKiemKhopr FROM dbo.KiemKho WHERE sttKiemKhopr = '" + sma + "' AND trangThai ='1'") == true)
-            {
-                return "Không được phép xóa khi đã được lưu chính thức!";
-            }
-            string strSQL = "SELECT TABLE_NAME tablename FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME LIKE N'" + scot.ToString() + '_' + "%' " + (sbangtru.ToString() == "" ? "" : " AND TABLE_NAME NOT IN ('" + sbangtru.Replace(",", "','") + "')") + " group by TABLE_NAME";
-            DataTable _dt = new DataTable();
-            _dt = _sqlClass.GetData(strSQL);
-            strSQL = " ";
-            if (_dt.Rows.Count > 0)
-            {
-                try
-                {
-                    string text = "<table style='width:100%'>";
-                    int dem = 0;
-                    for (int i = 0; i < _dt.Rows.Count; i++)
-                    {
-                        string dieuKien = "";
-                        DataTable tabTenCot = _sqlClass.GetData("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME like N'" + scot.ToString() + '_' + "%' and TABLE_NAME = N'" + _dt.Rows[i][0].ToString() + "'");
-                        for (int j = 0; j < tabTenCot.Rows.Count; j++)
-                        {
-                            if (j == 0)
-                                dieuKien = dieuKien + tabTenCot.Rows[j][0] + " =N'" + sma + "'";
-                            else
-                                dieuKien = dieuKien + " or " + tabTenCot.Rows[j][0] + " =N'" + sma + "'";
-                        }
-                        strSQL = "select * from " + _dt.Rows[i][0] + " where " + (dieuKien == "" ? "1=1" : dieuKien) + "";
-                        if (_sqlClass.CheckHasRecord(strSQL))
-                        {
-                            dem += 1;
-                            text += "<tr><td>" + _sqlClass.GetOneStringField("SELECT noiDungTB FROM dbo.ThongBaoLoi WHERE tenBangpr=N'" + _dt.Rows[i][0] + "'") + "</td></tr>";
-                        }
-                    }
-                    if (dem > 0)
-                    {
-                        if (sbangtru == "''" || sbangtru == "")
-                        {
-                            return text += "</table>";
-                        }
-                        else
-                        {
-                            string strBangTru = sbangtru.Replace("'", "");
-                            string[] mangBangTru = strBangTru.Split(',');
-                            string[] mangCotCon = scotcon.Split(',');
-                            string chuoicon_ = "";
-                            for (int i = 0; i < mangBangTru.Length; i++)
-                            {
-                                chuoicon_ += KiemTraXoa1(sma, mangCotCon[i].ToString(), mangBangTru[i].ToString(), scot, bangtrucon);
-                            }
-                            text += chuoicon_;
-                            text += "</table>";
-                            return text;
-                        }
-                    }
-                    else
-                    {
-                        if (sbangtru == "''" || sbangtru == "")
-                        {
-                            return "";
-                        }
-                        else
-                        {
-                            string chuoicon_ = "";
-                            string strBangTru = sbangtru.Replace("'", "");
-                            string[] mangBangTru = strBangTru.Split(',');
-                            string[] mangCotCon = scotcon.Split(',');
-                            for (int i = 0; i < mangBangTru.Length; i++)
-                            {
-                                chuoicon_ += KiemTraXoa1(sma, mangCotCon[i].ToString(), mangBangTru[i].ToString(), scot, bangtrucon);
-                            }
-                            if (chuoicon_ == "")
-                            {
-                                return "";
-                            }
-                            else
-                            {
-                                text += chuoicon_;
-                                text += "</table>";
-                                return text;
-                            }
-                        }
-                    }
-                }
-                catch
-                {
-                    return "";
-                }
-            }
-            else
-            {
-                return "";
-            }
-        }
+        ////kiem tram ma khi xoa
+        //public static string KiemTraXoa(string sma, string sbangtru, string scot, string scotcon, string bangtrucon)
+        //{
+        //    SqlFunction _sqlClass = new SqlFunction(NTSSession.GetConnectionString2());
+        //    //if (scot == "sttDinhMucNButpr")
+        //    //{
+        //    //    if (_sqlClass.CheckHasRecord("SELECT maDoiTuongpr_sd FROM dbo.NhuanBut WHERE sttNhapKhopr = '" + sma + "' AND trangThai ='1'") == true)
+        //    //    return "Không được phép xóa khi đã được lưu chính thức!";
+        //    //}
+        //    if (scot == "sttTraNhapKhopr" && _sqlClass.CheckHasRecord("SELECT sttTraNhapKhopr FROM dbo.TraNhapKho WHERE sttTraNhapKhopr = '" + sma + "' AND trangThai ='1'") == true)
+        //    {
+        //        return "Không được phép xóa khi đã được lưu chính thức!";
+        //    }
+        //    if (scot == "sttXuatKhopr" && _sqlClass.CheckHasRecord("SELECT sttXuatKhopr FROM dbo.XuatKho WHERE sttXuatKhopr = '" + sma + "' AND trangThai ='1'") == true)
+        //    {
+        //        return "Không được phép xóa khi đã được lưu chính thức!";
+        //    }
+        //    if (scot == "sttKiemKhopr" && _sqlClass.CheckHasRecord("SELECT sttKiemKhopr FROM dbo.KiemKho WHERE sttKiemKhopr = '" + sma + "' AND trangThai ='1'") == true)
+        //    {
+        //        return "Không được phép xóa khi đã được lưu chính thức!";
+        //    }
+        //    string strSQL = "SELECT TABLE_NAME tablename FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME LIKE N'" + scot.ToString() + '_' + "%' " + (sbangtru.ToString() == "" ? "" : " AND TABLE_NAME NOT IN ('" + sbangtru.Replace(",", "','") + "')") + " group by TABLE_NAME";
+        //    DataTable _dt = new DataTable();
+        //    _dt = _sqlClass.GetData(strSQL);
+        //    strSQL = " ";
+        //    if (_dt.Rows.Count > 0)
+        //    {
+        //        try
+        //        {
+        //            string text = "<table style='width:100%'>";
+        //            int dem = 0;
+        //            for (int i = 0; i < _dt.Rows.Count; i++)
+        //            {
+        //                string dieuKien = "";
+        //                DataTable tabTenCot = _sqlClass.GetData("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME like N'" + scot.ToString() + '_' + "%' and TABLE_NAME = N'" + _dt.Rows[i][0].ToString() + "'");
+        //                for (int j = 0; j < tabTenCot.Rows.Count; j++)
+        //                {
+        //                    if (j == 0)
+        //                        dieuKien = dieuKien + tabTenCot.Rows[j][0] + " =N'" + sma + "'";
+        //                    else
+        //                        dieuKien = dieuKien + " or " + tabTenCot.Rows[j][0] + " =N'" + sma + "'";
+        //                }
+        //                strSQL = "select * from " + _dt.Rows[i][0] + " where " + (dieuKien == "" ? "1=1" : dieuKien) + "";
+        //                if (_sqlClass.CheckHasRecord(strSQL))
+        //                {
+        //                    dem += 1;
+        //                    text += "<tr><td>" + _sqlClass.GetOneStringField("SELECT noiDungTB FROM dbo.ThongBaoLoi WHERE tenBangpr=N'" + _dt.Rows[i][0] + "'") + "</td></tr>";
+        //                }
+        //            }
+        //            if (dem > 0)
+        //            {
+        //                if (sbangtru == "''" || sbangtru == "")
+        //                {
+        //                    return text += "</table>";
+        //                }
+        //                else
+        //                {
+        //                    string strBangTru = sbangtru.Replace("'", "");
+        //                    string[] mangBangTru = strBangTru.Split(',');
+        //                    string[] mangCotCon = scotcon.Split(',');
+        //                    string chuoicon_ = "";
+        //                    for (int i = 0; i < mangBangTru.Length; i++)
+        //                    {
+        //                        chuoicon_ += KiemTraXoa1(sma, mangCotCon[i].ToString(), mangBangTru[i].ToString(), scot, bangtrucon);
+        //                    }
+        //                    text += chuoicon_;
+        //                    text += "</table>";
+        //                    return text;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                if (sbangtru == "''" || sbangtru == "")
+        //                {
+        //                    return "";
+        //                }
+        //                else
+        //                {
+        //                    string chuoicon_ = "";
+        //                    string strBangTru = sbangtru.Replace("'", "");
+        //                    string[] mangBangTru = strBangTru.Split(',');
+        //                    string[] mangCotCon = scotcon.Split(',');
+        //                    for (int i = 0; i < mangBangTru.Length; i++)
+        //                    {
+        //                        chuoicon_ += KiemTraXoa1(sma, mangCotCon[i].ToString(), mangBangTru[i].ToString(), scot, bangtrucon);
+        //                    }
+        //                    if (chuoicon_ == "")
+        //                    {
+        //                        return "";
+        //                    }
+        //                    else
+        //                    {
+        //                        text += chuoicon_;
+        //                        text += "</table>";
+        //                        return text;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        catch
+        //        {
+        //            return "";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
 
-        public static string KiemTraXoa1(string sma, string scotcon, string strBangCon, string scotcha, string bangtrucon)
-        {
-            string strSQL = "SELECT TABLE_NAME tablename FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME LIKE N'" + scotcon.ToString() + '_' + "%' " + (bangtrucon.ToString() == "" ? "" : " AND TABLE_NAME NOT IN ('" + bangtrucon.Replace(",", "','") + "')") + " group by TABLE_NAME";
-            SqlFunction _sqlClass = new SqlFunction(NTSSession.GetConnectionString2());
-            DataTable _dt = new DataTable();
-            _dt = _sqlClass.GetData(strSQL);
-            strSQL = " ";
-            string kq = "";
-            if (_dt.Rows.Count > 0)
-            {
-                try
-                {
-                    for (int i = 0; i < _dt.Rows.Count; i++)
-                    {
-                        strSQL = "select " + scotcon + "_sd from " + _dt.Rows[i][0] + " where " + scotcon + "_sd in  (select " + scotcon + " from  " + strBangCon + " where " + scotcha + " = N'" + sma + "')";
-                        if (_sqlClass.CheckHasRecord(strSQL))
-                        {
-                            kq += "<tr><td>" + _sqlClass.GetOneStringField("SELECT noiDungTB FROM dbo.ThongBaoLoi WHERE tenBangpr=N'" + _dt.Rows[i][0] + "'") + "</td></tr>";
-                        }
-                    }
-                    return kq;
-                }
-                catch { return ""; }
-            }
-            else
-            {
-                return "";
-            }
-        }
+        //public static string KiemTraXoa1(string sma, string scotcon, string strBangCon, string scotcha, string bangtrucon)
+        //{
+        //    string strSQL = "SELECT TABLE_NAME tablename FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME LIKE N'" + scotcon.ToString() + '_' + "%' " + (bangtrucon.ToString() == "" ? "" : " AND TABLE_NAME NOT IN ('" + bangtrucon.Replace(",", "','") + "')") + " group by TABLE_NAME";
+        //    SqlFunction _sqlClass = new SqlFunction(NTSSession.GetConnectionString2());
+        //    DataTable _dt = new DataTable();
+        //    _dt = _sqlClass.GetData(strSQL);
+        //    strSQL = " ";
+        //    string kq = "";
+        //    if (_dt.Rows.Count > 0)
+        //    {
+        //        try
+        //        {
+        //            for (int i = 0; i < _dt.Rows.Count; i++)
+        //            {
+        //                strSQL = "select " + scotcon + "_sd from " + _dt.Rows[i][0] + " where " + scotcon + "_sd in  (select " + scotcon + " from  " + strBangCon + " where " + scotcha + " = N'" + sma + "')";
+        //                if (_sqlClass.CheckHasRecord(strSQL))
+        //                {
+        //                    kq += "<tr><td>" + _sqlClass.GetOneStringField("SELECT noiDungTB FROM dbo.ThongBaoLoi WHERE tenBangpr=N'" + _dt.Rows[i][0] + "'") + "</td></tr>";
+        //                }
+        //            }
+        //            return kq;
+        //        }
+        //        catch { return ""; }
+        //    }
+        //    else
+        //    {
+        //        return "";
+        //    }
+        //}
         // chuyển chuỗi sang ngày dạng yyyy-mm-dd
         public static string chuyenChuoiSangNgay_YYYYmmdd(string strChuoi)
         {
