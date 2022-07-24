@@ -30,7 +30,13 @@
                     <div class="col-md-4">
                         <select class="form-control input-sm" id="PhanMem_Loc"></select>
                     </div>
-                    <button class="btn btn-primary btn-sm" onclick="bntloc_DanhSach();return false;" id="bntloc"><i class="fa fa-filter"></i>&nbsp;Lọc</button>
+                    <label class="col-md-1 control-label">Test</label>
+                    <div class="col-md-4">
+                        <select class="form-control input-sm" id="test">
+                            <option value="value">text</option>
+                            <option value="value">text</option>
+                        </select>
+                    </div>
                 </fieldset>
             </div>
         </div>
@@ -167,4 +173,9 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="~/Areas/Admin/Scripts/home.js"></script>
+<script>
+    $(function () {
+        $('#test').select2()
+    })
+</script>
+<script src="~/Areas/Admin/Scripts/home.js"></script>

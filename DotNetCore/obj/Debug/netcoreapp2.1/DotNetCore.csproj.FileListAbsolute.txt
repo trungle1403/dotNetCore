@@ -37,5 +37,6 @@ D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\View
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_AdminLayout.g.cshtml.cs
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Home\Index.g.cshtml.cs
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_Header.g.cshtml.cs
-D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.csprojAssemblyReference.cache
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_Footer.g.cshtml.cs
+D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_Leftbar.g.cshtml.cs
+D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.csprojAssemblyReference.cache

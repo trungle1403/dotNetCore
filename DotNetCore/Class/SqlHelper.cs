@@ -17,7 +17,21 @@ namespace DotNetCore.Class
         // Since this class provides only static methods, make the default constructor private to prevent 
         // instances from being created with "new SqlHelper()"
         private SqlHelper() { }
+        public static string Database;
 
+        public static SqlConnection GetConnection()
+        {
+            try
+            {
+                SqlConnection connection = new SqlConnection(Database);
+                return connection;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         /// <summary>
         /// This method is used to attach array of SqlParameters to a SqlCommand.
         /// 
