@@ -32,9 +32,14 @@ namespace DotNetCore
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddDistributedMemoryCache();
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(1);//You can set Time   
+            });
 
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSession();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +58,7 @@ namespace DotNetCore
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
@@ -64,6 +70,8 @@ namespace DotNetCore
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            //string connectionString = Configuration.GetConnectionString("ConnectionStringQLCV");
+            //HttpContext.Session.SetString("GetConnectionString1", connectionString);
         }
     }
 }

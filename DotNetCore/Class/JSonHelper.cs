@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCore.Class
 {
-    public class JsonHelper
+    public class JSonHelper
     {
         public static string ToJson(object obj)
         {

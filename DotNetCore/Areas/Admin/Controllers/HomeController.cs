@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DotNetCore.Class;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Http;
 
 namespace DotNetCore.Areas.Admin.Controllers
 {
@@ -28,26 +29,21 @@ namespace DotNetCore.Areas.Admin.Controllers
         {
             try
             {
-                //string connectionString = Configuration.GetConnectionString("ConnectionStringQLCV");
-                //string connectionString2 = Configuration.GetConnectionString("MyConn");
-                //SqlFunction sqlFun = new SqlFunction(connectionString);
-                //SqlFunction sqlFun2 = new SqlFunction(connectionString2);
-                //DataTable tab = sqlFun.GetData("SELECT * FROM dbo.tblUsers");
-                //DataTable tab2 = SqlHelper.ExecuteDataset(connectionString, CommandType.Text, @"SELECT * FROM dbo.tblUsers", null).Tables[0];
-                //return JsonHelper.ToJson(SqlHelper.ExecuteDataset(connectionString, CommandType.Text,
-                //@"SELECT * FROM dbo.tblUsers", null).Tables[0]);
-                DataTable tab = new DataTable();
-                tab.Columns.Add("Name", typeof(String));
-                tab.Columns.Add("CustFName", typeof(String));
-                for (int i = 0; i < 3; i++)
-                {
-                    tab.Rows.Add("trung" + i,"value");
-                }
-                return JsonHelper.ToJson(tab);
+                HttpContext.Session.SetString("hongbeoi", "deo");
+                var abc = HttpContext.Session.GetString("hongbeoi");
+                string connectionString = Configuration.GetConnectionString("ConnectionStringQLCV");
+                string connectionString2 = Configuration.GetConnectionString("MyConn");
+                SqlFunction sqlFun = new SqlFunction(connectionString);
+                SqlFunction sqlFun2 = new SqlFunction(connectionString2);
+                var tab = sqlFun2.GetOneStringField("SELECT TenDonVi FROM DonVi");
+                DataTable tab2 = SqlHelper.ExecuteDataset(connectionString2, CommandType.Text, @"SELECT * FROM dbo.NhanVien", null).Tables[0];
+                var data = JSonHelper.ToJson(SqlHelper.ExecuteDataset(connectionString2, CommandType.Text,
+                @"SELECT * FROM dbo.NhanVien", null).Tables[0]);
+                return data;
             }
             catch (Exception ex)
             {
-                return JsonHelper.ToJson(null);
+                return JSonHelper.ToJson(null);
             }
         }
     }

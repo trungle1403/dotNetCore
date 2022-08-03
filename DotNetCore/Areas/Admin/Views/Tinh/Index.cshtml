@@ -1,0 +1,167 @@
+﻿@{
+    ViewData["Title"] = "Tinh";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<style type="text/css">
+    @@media (min-width: 992px) {
+        #mdThemMoi .modal-dialog {
+            width: 45% !important;
+        }
+
+        #mdNhapExcel .modal-dialog {
+            width: 70% !important;
+        }
+    }
+
+    .dropdown-toggle-split::after, .dropright .dropdown-toggle-split::after, .dropup .dropdown-toggle-split::after {
+        margin-left: 0;
+        display: inline-block;
+        margin-left: .255em;
+        vertical-align: .255em;
+        content: "";
+        border-top: .3em solid;
+        border-right: .3em solid transparent;
+        border-bottom: 0;
+        border-left: .3em solid transparent;
+    }
+
+    .dropdown-item#btnKiemTraGhiDe {
+        display: block;
+        width: 100%;
+        padding: .25rem 1.5rem;
+        clear: both;
+        font-weight: 400;
+        color: #212529;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+        color: white;
+    }
+
+        .dropdown-item#btnKiemTraGhiDe:hover {
+            color: white !important;
+        }
+
+    .dropdown-menu#DivKiemTraGhiDe:hover {
+        background-color: #E59729 !important;
+        color: white;
+    }
+
+    .popover-title {
+        max-width: 500px;
+        min-width: 200px !important;
+        width: auto;
+        margin-top: -1px !important;
+        font-size: 11px;
+        height: 20px;
+        line-height: 5px;
+        background-color: #5cb85c !important;
+        color: white;
+        border-top-left-radius: calc(.3rem - 1px) !important;
+        border-top-right-radius: calc(.3rem - 1px) !important;
+        border-bottom: 1px solid #d9dbe1;
+        opacity: 0.9 !important;
+    }
+</style>
+
+<div class="main-content">
+    <div class="main-content-inner">
+        <div class="page-content">
+            <fieldset class="khungvien">
+                <legend><b>Danh sách Tỉnh/Thành phố</b></legend>
+                @*<h5 class="header smaller lighter blue">
+                        <span class="badge badge-success"></span>
+                    </h5>*@
+
+                <div class="row">
+                    <div class="col-md-9">
+                        <button class="btn btn-sm btn-primary" id="btnThemMoi"><i class="fa fa-plus"></i>&ensp;Thêm mới</button>
+                    </div>
+                    <div class="col-md-3">
+                        <span class="input-icon" style="float: right;">
+                            <input type="text" placeholder="Nội dung tìm kiếm ..." class="nav-search-input" id="timKiem" autocomplete="off">
+                            <i class="ace-icon fa fa-search nav-search-icon"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="Grid1" class="GridData"></div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="mdThemMoi">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header no-padding">
+                <div class="table-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        <span class="white">&times;</span>
+                    </button>
+                    <span id="tieuDeModal">Thêm mới tỉnh</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <fieldset class="khungvien">
+                    <legend><b>Thông tin Tỉnh/Thành phố</b></legend>
+                    @*<h5 class="header smaller lighter blue">
+                            <span class="badge badge-success"></span>Thông tin Tỉnh/Thành phố
+                        </h5>*@
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="validation">Mã</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control input-sm" maxlength="50" type="text" id="TinhCode" />
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 4px">
+
+                            <div class="col-md-3">
+                                <label class="validation">Tên Tỉnh/Thành phố</label>
+                            </div>
+
+                            <div class="col-md-9">
+                                <input class="form-control input-sm" type="text" id="TenTinh" />
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 4px">
+                            <div class="col-md-3">
+                                <label class="">Tên viết tắt</label>
+                            </div>
+                            <div class="col-md-9">
+                                <input class="form-control input-sm" type="text" id="TenVietTat" />
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 4px">
+                            <label class="col-md-3 control-label no-padding-right ">Ghi chú</label>
+                            <div class="col-md-9">
+                                <textarea class="form-control input-sm" id="DienGiai" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <label class="middle" style="line-height:0px;float:left">
+                    <input class="ace" type="checkbox" id="NgungSD" />
+                    <span class="lbl"> &nbsp;Ngưng sử dụng</span>
+                </label>
+                <a href="#" id="btnLuuVaDong" class="btn btn-success" onclick="return false;">
+                    <i class="ace-icon fa fa-floppy-o bigger-110"></i>&nbsp;Lưu và đóng
+                </a> &nbsp;
+                <a href="#" class="btn btn-danger"
+                   data-dismiss="modal"><i class="fa fa-close"></i>&nbsp;Đóng</a>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="TinhID" />
+<script src="~/Areas/Admin/Scripts/Tinh.js"></script>

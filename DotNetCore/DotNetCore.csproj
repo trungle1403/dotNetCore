@@ -24,9 +24,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.96.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Queryable" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +41,15 @@
 
   <ItemGroup>
     <None Include="wwwroot\images\user.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Data.Linq">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="WEB_DLL">
+      <HintPath>..\..\QLCV2020\QLCV2020\bin\WEB_DLL.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

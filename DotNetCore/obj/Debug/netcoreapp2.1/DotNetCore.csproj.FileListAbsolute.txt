@@ -40,3 +40,8 @@ D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\View
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_Footer.g.cshtml.cs
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Shared\_Leftbar.g.cshtml.cs
 D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\DotNetCore.csprojAssemblyReference.cache
+D:\Projects\DotNetCore\DotNetCore\bin\Debug\netcoreapp2.1\WEB_DLL.dll
+D:\Projects\DotNetCore\DotNetCore\bin\Debug\netcoreapp2.1\GemBox.Spreadsheet.dll
+D:\Projects\DotNetCore\DotNetCore\bin\Debug\netcoreapp2.1\System.Data.Linq.dll
+D:\Projects\DotNetCore\DotNetCore\bin\Debug\netcoreapp2.1\System.Data.Linq.xml
+D:\Projects\DotNetCore\DotNetCore\obj\Debug\netcoreapp2.1\Razor\Areas\Admin\Views\Tinh\Index.g.cshtml.cs

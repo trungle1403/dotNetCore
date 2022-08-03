@@ -177,5 +177,9 @@
     $(function () {
         $('#test').select2()
     })
+    $('#btnThem').click(function () {
+        var data = NTS.getAjax("json", "/Home/getAllUser", {});
+        console.log(data)
+    })
 </script>
 <script src="~/Areas/Admin/Scripts/home.js"></script>
